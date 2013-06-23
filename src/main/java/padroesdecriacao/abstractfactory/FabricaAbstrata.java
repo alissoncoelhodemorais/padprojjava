@@ -1,8 +1,10 @@
 package padroesdecriacao.abstractfactory;
 
+import java.io.File;
+
 public class FabricaAbstrata {
 	
-	public static void criar(String tipoArquivo, String conteudo) throws Exception {
+	public static File criar(String tipoArquivo, String conteudo) throws Exception {
 		if (
 				"apresentacao".equals(tipoArquivo) 
 				||
@@ -11,7 +13,7 @@ public class FabricaAbstrata {
 				"planilha".equals(tipoArquivo)
 		) {
 			IDocumento documento = AbstractDocumento.factory(tipoArquivo, conteudo);
-			documento.criar();
+			return documento.criar();
 		} else if (
 				"BMP".equals(tipoArquivo) 
 				||
@@ -20,7 +22,9 @@ public class FabricaAbstrata {
 				"GIF".equals(tipoArquivo)
 		) {
 			IImagem imagem = AbstractImagem.factory(tipoArquivo, conteudo);
-			imagem.criar();
+			return imagem.criar();
+		} else {
+			throw new Exception ("tipo de arquivo invalido");
 		}
 	}
 

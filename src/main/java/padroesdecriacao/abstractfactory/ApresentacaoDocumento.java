@@ -1,5 +1,7 @@
 package padroesdecriacao.abstractfactory;
 
+import java.io.File;
+
 public class ApresentacaoDocumento implements IDocumento {
 
 	private String conteudo;
@@ -8,8 +10,10 @@ public class ApresentacaoDocumento implements IDocumento {
 		this.conteudo = conteudo;
 	}
 
-	public void criar() {
+	public File criar() {
 		System.out.println("a apresentacao foi criada com o seguinte conteudo: " + conteudo);
+		File arquivo = new File("/tmp/padprojjava.odp");
+		return arquivo;
 	}
 
 }

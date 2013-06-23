@@ -1,5 +1,7 @@
 package padroesdecriacao.abstractfactory;
 
+import java.io.File;
+
 public class GifImagem implements IImagem {
 
 	private String conteudo;
@@ -8,7 +10,9 @@ public class GifImagem implements IImagem {
 		this.conteudo = conteudo;
 	}
 
-	public void criar() {
+	public File criar() {
 		System.out.println("o GIF foi criado com o seguinte conteudo: " + conteudo);
+		File arquivo = new File("/tmp/padprojjava.gif");
+		return arquivo;
 	}
 }
