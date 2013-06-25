@@ -21,6 +21,7 @@ public class Application {
 			String host = properties.getProperty("host");
 			String port = properties.getProperty("port");
 
+			@SuppressWarnings("unused")
 			IDatabaseConnection connection;
 
 			if (adapter.equals("MYSQL")) {
