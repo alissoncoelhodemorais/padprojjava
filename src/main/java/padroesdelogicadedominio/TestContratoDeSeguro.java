@@ -21,6 +21,14 @@ public class TestContratoDeSeguro {
 		// responda às perguntas para pelo menos três situações diferentes.
 		fail("Not yet implemented"); // TODO
 	}
+	
+	@Test
+	public void y5testCondicaoEspSobrepondoGer() {
+		// A classe CondicaoEspecial representa as condições específicas para uma proposta de seguro. Elas podem afetar as
+		// restrições impostas pelas condições gerais, permitindo o pagamento quando as primeiras o negam e negando-o quando as
+		// primeiras o autorizam.
+		fail("nao impl"); // TODO
+	}
 
 	/**
 	 * O cliente assinou um determinado contrato? O contrato só é assinado se a proposta é aceita.
