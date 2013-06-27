@@ -10,13 +10,12 @@ public class Sistema {
 	}
 
 	private void configurar() {
-		System.out.println(config.getAdaptador());
+		System.out.println("Sistema configurado com o seguinte para acessar um banco: " + config.getAdaptador());
 		
 	}
 
-	public void exibirMenu() {
-		System.out.println("exibindo menu");
-		
+	public boolean usuarioPossuiPermissao() {
+		return false;
 	}
 
 }

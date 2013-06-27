@@ -5,7 +5,8 @@ public class Verificadora {
 	public boolean possuiRequisitosMinimos() {
 		boolean retorno = false;
 
-		if (!"".equals(ConfiguracaoAplicacao.getInstance().getAdaptador()))
+		String adaptador = ConfiguracaoAplicacao.getInstance().getAdaptador();
+		if (adaptador != null && !"".equals(adaptador))
 			retorno = true;
 
 		return retorno;
@@ -15,7 +16,8 @@ public class Verificadora {
 	public boolean existeBancoDados() {
 		boolean retorno = false;
 
-		if (!"".equals(ConfiguracaoAplicacao.getInstance().getNomeBanco()))
+		String banco = ConfiguracaoAplicacao.getInstance().getNomeBanco();
+		if (banco != null && !"".equals(banco))
 			retorno = true;
 
 		return retorno;
