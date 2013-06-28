@@ -1,7 +1,8 @@
 package padroesdelogicadedominio;
 
 /**
- * A classe Proposta representa a proposta feita para um cliente.
+ * A classe Proposta representa a proposta feita para um cliente. A classe Proposta informa se o cliente aceitou ou não a
+ * proposta.
  * @author 00737990929
  *
  */

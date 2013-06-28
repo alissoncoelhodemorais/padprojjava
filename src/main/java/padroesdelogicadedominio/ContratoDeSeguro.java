@@ -11,15 +11,15 @@ package padroesdelogicadedominio;
 public class ContratoDeSeguro {
 
 	private Proposta proposta;
-	private CondicaoGeral condicaoGeral;
-	private CondicaoEspecial condicaoEspecial;
+	private ICondicaoProposta condicaoGeral;
+	private ICondicaoProposta condicaoEspecial;
 
 	@SuppressWarnings("unused")
 	private ContratoDeSeguro() {
 		super();
 	}
 	
-	public ContratoDeSeguro(Proposta proposta, CondicaoGeral condicaoGeral, CondicaoEspecial esp) {
+	public ContratoDeSeguro(Proposta proposta, ICondicaoProposta condicaoGeral, ICondicaoProposta esp) {
 		super();
 		this.proposta = proposta;
 		this.condicaoGeral = condicaoGeral;
@@ -42,16 +42,21 @@ public class ContratoDeSeguro {
 	 * @return verdadeiro ou falso
 	 */
 	public boolean clientePodeReceberIndenizacao() {
-		boolean isPodeGeral = getCondicaoGeral().isPodeReceberIndenizacao();
-		boolean isPodeEspecial = getCondicaoEspecial().isPodeReceberIndenizacao();
+//		as condições especiais sobrepoe as regras da condições gerais
+		ICondicaoProposta condicaoAplicada = null;
 		
-		if (isPodeGeral || isPodeEspecial)
-			return true;
+		if (getCondicaoEspecial() != null)
+			condicaoAplicada = getCondicaoEspecial();
 		else 
-			return false;
+			condicaoAplicada = getCondicaoGeral();
+		
+		boolean isPode = condicaoAplicada.isPodeReceberIndenizacao();
+		
+		return isPode;
+
 	}
 
-	private CondicaoEspecial getCondicaoEspecial() {
+	private ICondicaoProposta getCondicaoEspecial() {
 		return condicaoEspecial;
 	}
 
@@ -68,7 +73,7 @@ public class ContratoDeSeguro {
 		return proposta;
 	}
 
-	private CondicaoGeral getCondicaoGeral() {
+	private ICondicaoProposta getCondicaoGeral() {
 		return condicaoGeral;
 	}
 

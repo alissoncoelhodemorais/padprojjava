@@ -7,17 +7,25 @@ package padroesdelogicadedominio;
  * @author 00737990929
  * 
  */
-public class CondicaoGeral {
+public class CondicaoGeral implements ICondicaoProposta {
 
 	private boolean podeReceberIndenizacao;
 
 	public CondicaoGeral() {
 	}
 
+	/* (non-Javadoc)
+	 * @see padroesdelogicadedominio.ICondicaoProposta#setPodeReceberIndenizacao(boolean)
+	 */
+	@Override
 	public void setPodeReceberIndenizacao(boolean b) {
 		this.podeReceberIndenizacao = b;
 	}
 
+	/* (non-Javadoc)
+	 * @see padroesdelogicadedominio.ICondicaoProposta#isPodeReceberIndenizacao()
+	 */
+	@Override
 	public boolean isPodeReceberIndenizacao() {
 		return podeReceberIndenizacao;
 	}
