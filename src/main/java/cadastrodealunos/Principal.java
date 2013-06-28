@@ -12,6 +12,8 @@ public class Principal {
 		}
 
 		pane.setLayout(new GridLayout(0, 2));
+		
+		IncluirAlunoAcao iaa = new IncluirAlunoAcao();
 
 		pane.add(new JButton("Botoao 1"));
 		pane.add(new JButton("Botoao 2"));
