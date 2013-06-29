@@ -1,14 +1,14 @@
-package padroescomportamentais.chainofresponsibility;
+package padroescomportamentais.chainofresponsibility.singleton;
 
-public class FiltroString implements IFilter {
+public class FiltroDouble implements IFilter {
 	
 	@Override
-	public String filter(String pString) {
-		return (pString);
+	public double filter(double pDouble) {
+		return (pDouble);
 	}
 
 	@Override
-	public double filter(double p) {
+	public int filter(int p) {
 		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
 
@@ -18,8 +18,8 @@ public class FiltroString implements IFilter {
 	}
 
 	@Override
-	public int filter(int p) {
+	public String filter(String p) {
 		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
-	
+
 }

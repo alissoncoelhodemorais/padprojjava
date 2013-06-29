@@ -1,4 +1,4 @@
-package padroescomportamentais.chainofresponsibility;
+package padroescomportamentais.chainofresponsibility.singleton;
 
 public interface IFilter {
 

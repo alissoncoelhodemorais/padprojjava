@@ -1,4 +1,4 @@
-package padroescomportamentais.chainofresponsibility;
+package padroescomportamentais.chainofresponsibility.singleton;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,10 @@
-package padroescomportamentais.chainofresponsibility;
+package padroescomportamentais.chainofresponsibility.singleton;
 
-public class FiltroFloat  implements IFilter {
-	
+public class FiltroInt  implements IFilter {
+
 	@Override
-	public float filter(float pFloat) {
-		return (pFloat);
+	public int filter(int pInt) {
+		return pInt;
 	}
 
 	@Override
@@ -13,7 +13,7 @@ public class FiltroFloat  implements IFilter {
 	}
 
 	@Override
-	public int filter(int p) {
+	public float filter(float p) {
 		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
 

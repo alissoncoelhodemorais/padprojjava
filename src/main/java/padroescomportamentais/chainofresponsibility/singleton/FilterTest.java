@@ -1,4 +1,4 @@
-package padroescomportamentais.chainofresponsibility;
+package padroescomportamentais.chainofresponsibility.singleton;
 
 import static org.junit.Assert.*;
 
