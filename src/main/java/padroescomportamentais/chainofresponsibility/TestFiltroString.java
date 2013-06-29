@@ -1,6 +1,6 @@
-package padroescomportamentais.chainofresponsibility.instanceOf;
+package padroescomportamentais.chainofresponsibility;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class TestFiltroString {
 		IFilter fstr = new FiltroString();
 		IFilter fint = new FiltroInt();
 		
-		fstr.setProximo(fint);
+//		fstr.adicionarProximo(fint);
 		
 		assertEquals("quarenta e quatro", fstr.filter("quarenta e quatro"));
 		

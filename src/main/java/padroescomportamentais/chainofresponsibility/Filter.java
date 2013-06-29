@@ -5,60 +5,63 @@ import java.util.List;
 
 public class Filter implements IFilter {
 	
-	private int executando = -1;
+	IFilter atual;
+	
+	private static Filter instance = null;
 
 	private List<IFilter> filters;
 
-	public Filter() {
+	public static Filter getInstance() {
+		if (instance == null) 
+			instance = new Filter();
+		return instance;
+	}
+	
+	private Filter() {
 		filters = new ArrayList<IFilter>();
 	}
 
 	public void addFilter(IFilter obj) {
 		filters.add(obj);
+		if (atual == null)
+			atual = obj;
 	}
 
 	@Override
-	public int filter(int pInt) {
-		this.executando = incrementar();
-
-		IFilter filtro = filters.get(this.executando);
-		
-		return filtro.filter(pInt);
+	public int filter(int p) {
+//		return getProximoFiltro().filter(p);
+		return atual.filter(p);
 	}
 
 	@Override
 	public float filter(float p) {
-		this.executando = incrementar();
-
-		IFilter filtro = filters.get(this.executando);
-		
-		return filtro.filter(p);
+//		return getProximoFiltro().filter(p);
+		return atual.filter(p);
 	}
 
 	@Override
 	public double filter(double p) {
-		this.executando = incrementar();
-
-		IFilter filtro = filters.get(this.executando);
-		
-		return filtro.filter(p);
+//		return getProximoFiltro().filter(p);
+		return atual.filter(p);
 	}
 
 	@Override
 	public String filter(String p) {
-		this.executando = incrementar();
-
-		IFilter filtro = filters.get(this.executando);
-		
-		return filtro.filter(p);
+//		return getProximoFiltro().filter(p);
+		return atual.filter(p);
 	}
 	
-	private int incrementar() {
-		if (this.executando > this.filters.size()) {
-			return 0;
+	protected IFilter getProximoFiltro() {
+		int posicaoAtual = filters.indexOf(atual);
+		int qtdeFiltros = filters.size();
+		if ((posicaoAtual + 1) == qtdeFiltros) {
+			throw new RuntimeException("Nenhum filtro atende ao informado!");
 		} else {
-			return executando + 1;
+			IFilter proximo = filters.get(posicaoAtual + 1);
+			atual = proximo;
+			return proximo;
 		}
 	}
-
+	
+	
 }

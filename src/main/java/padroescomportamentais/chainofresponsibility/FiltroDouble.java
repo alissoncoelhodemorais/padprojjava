@@ -1,6 +1,6 @@
 package padroescomportamentais.chainofresponsibility;
 
-public class FiltroDouble extends Filter implements IFilter {
+public class FiltroDouble implements IFilter {
 	
 	@Override
 	public double filter(double pDouble) {
@@ -8,18 +8,18 @@ public class FiltroDouble extends Filter implements IFilter {
 	}
 
 	@Override
-	public int filter(int pInt) {
-		return super.filter(pInt);
+	public int filter(int p) {
+		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
 
 	@Override
 	public float filter(float p) {
-		return super.filter(p);
+		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
 
 	@Override
 	public String filter(String p) {
-		return super.filter(p);
+		return Filter.getInstance().getProximoFiltro().filter(p);
 	}
 
 }
