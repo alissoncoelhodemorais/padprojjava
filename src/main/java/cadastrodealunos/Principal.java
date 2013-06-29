@@ -14,9 +14,13 @@ public class Principal {
 		pane.setLayout(new GridLayout(0, 2));
 		
 		IncluirAlunoAcao iaa = new IncluirAlunoAcao();
+		iaa.setValor("ini");
 
 		pane.add(new JButton("Botoao 1"));
-		pane.add(new JButton("Botoao 2"));
+		JButton jButton = new JButton("Botoao 2");
+		jButton.addActionListener(iaa);
+		iaa.setValor("depois");
+		pane.add(jButton);
 		pane.add(new JButton("Botoao 3"));
 		pane.add(new JButton("Botao Nome-Longo 4"));
 		pane.add(new JButton("5"));
