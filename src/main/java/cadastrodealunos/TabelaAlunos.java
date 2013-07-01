@@ -15,9 +15,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import padroesorm.activerecord.AlunoModel;
-import padroesorm.rowdatagateway.Aluno;
-import padroesorm.tabledatagateway.ManipuladorDeAlunos;
+import cadastrodealunos.activerecord.AlunoModel;
+import cadastrodealunos.rowdatagateway.Aluno;
+import cadastrodealunos.tabledatagateway.ManipuladorDeAlunos;
 
 public class TabelaAlunos extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;

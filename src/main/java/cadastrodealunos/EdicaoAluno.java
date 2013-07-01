@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import padroesorm.activerecord.AlunoModel;
-import padroesorm.rowdatagateway.Aluno;
+import cadastrodealunos.activerecord.AlunoModel;
+import cadastrodealunos.rowdatagateway.Aluno;
 
 public class EdicaoAluno extends JFrame {
 	private static final long serialVersionUID = 1L;
