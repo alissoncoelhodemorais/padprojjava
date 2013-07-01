@@ -11,7 +11,6 @@ public class IncluirAlunoAcao implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		EdicaoAluno lfd = new EdicaoAluno();
 		lfd.setVisible(true);
-		System.out.println("cliclou em incAluAca");
 	}
 
 	public String getValor() {
@@ -19,7 +18,6 @@ public class IncluirAlunoAcao implements ActionListener {
 	}
 
 	public void setValor(String valor) {
-		System.out.println("valor: " + valor);
 		this.valor = valor;
 	}
 

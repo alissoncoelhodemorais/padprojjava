@@ -2,30 +2,41 @@ package padroesorm.activerecord;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
+
+import padroesorm.datamapper.AlunoMapper;
+import padroesorm.rowdatagateway.Aluno;
 
 public class AlunoModelTest {
 
 	@Test
 	public void testSave() {
-		int matricula = 2;
-		model().setMatricula(matricula);
-		String nome = "Bolinha";
-		model().setNome(nome);
-		model().save();
+		
+		ArrayList<Aluno> todos = new AlunoMapper().fetchAll();
+		
+		int matricula = 3;
+		AlunoModel models = new AlunoModel();
+		models.setMatricula(matricula);
+		String nome = "Bolinha3";
+		models.setNome(nome);
+		models.save();
 		
 		AlunoModel model = new AlunoModel(matricula);
 		assertEquals(nome, model.getNome());
 	}
 
-	private AlunoModel model() {
-		AlunoModel model = new AlunoModel();
-		return model;
-	}
-
 	@Test
 	public void testApagar() {
-		Integer matricula = 2;
+		int matricula = 4;
+		
+		AlunoModel models = new AlunoModel();
+		models.setMatricula(matricula);
+		String nome = "Bolinha4";
+		models.setNome(nome);
+		models.save();
+		
 		AlunoModel model = new AlunoModel(matricula);
 		
 		model.remove();
