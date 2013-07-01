@@ -1,34 +1,32 @@
 package padroesorm.activerecord;
- 
+
 import padroesorm.datamapper.AlunoMapper;
 import padroesorm.rowdatagateway.Aluno;
- 
-public class AlunoModel extends Aluno{
+
+public class AlunoModel extends Aluno {
 	private AlunoMapper dmAluno = new AlunoMapper();
- 
-	public AlunoModel(){}
- 
-	public AlunoModel(Integer matricula)
-	{
-		Aluno aluno = dmAluno.find(matricula);
-		this.setNome(aluno.getNome());
-	}	
- 
-	public void save()
-	{
-		Aluno aluno = dmAluno.find(this.getMatricula());
-		if (aluno == null)
-		{
-			dmAluno.insert(this);	
-		}
-		else
-		{
-			dmAluno.update(this);
-		}		
+
+	public AlunoModel() {
 	}
- 
-	public void remove()
-	{
+
+	public AlunoModel(Integer matricula) {
+		Aluno aluno = dmAluno.find(matricula);
+		if (aluno != null) {
+			this.setMatricula(aluno.getMatricula());
+			this.setNome(aluno.getNome());
+		}
+	}
+
+	public void save() {
+		Aluno aluno = dmAluno.find(this.getMatricula());
+		if (aluno == null) {
+			dmAluno.insert(this);
+		} else {
+			dmAluno.update(this);
+		}
+	}
+
+	public void remove() {
 		dmAluno.delete(this);
 		this.setMatricula(null);
 		this.setNome(null);

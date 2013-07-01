@@ -1,20 +1,13 @@
 package padroesorm.activerecord;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import padroesorm.datamapper.AlunoMapper;
-import padroesorm.rowdatagateway.Aluno;
 
 public class AlunoModelTest {
 
 	@Test
 	public void testSave() {
-		
-		ArrayList<Aluno> todos = new AlunoMapper().fetchAll();
 		
 		int matricula = 3;
 		AlunoModel models = new AlunoModel();

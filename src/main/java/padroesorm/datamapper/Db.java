@@ -2,6 +2,7 @@ package padroesorm.datamapper;
  
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ public class Db {
 	private static final String PASSWORD = "1234";
 	private static Connection instance = null;
 	private static Statement statement = null;
+	private static PreparedStatement pst;
  
 	private Db()
 	{
@@ -51,12 +53,22 @@ public class Db {
 	{
 		ResultSet result = null;
 		try {
-			statement = getInstance().createStatement();
-			result = statement.executeQuery(sql);
-			statement.close();			
+			pst = getInstance().prepareStatement(sql);
+            result = pst.executeQuery();
+//			statement = getInstance().createStatement();
+//			result = statement.executeQuery(sql);
+//			statement.close();			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+//			try {
+//				pst.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
+		
 		return result;
 	}
  

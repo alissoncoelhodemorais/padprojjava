@@ -17,32 +17,38 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import padroesorm.activerecord.AlunoModel;
+import padroesorm.rowdatagateway.Aluno;
+
 public class EdicaoAluno extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
 	private JLabel lbMatr = new JLabel("Matrícula");
 	private JLabel lbNome = new JLabel("Nome");
-	private JTextField jtTexto01 = new JTextField(10);
-	private JTextField jtTexto02 = new JTextField(10);
+	private JTextField jtMatr = new JTextField(10);
+	private JTextField jtNome = new JTextField(10);
 	private JButton jbOk = new JButton("Gravar");
 	private JButton jbLim = new JButton("Remover");
 	private JRadioButton[] escolha = new JRadioButton[looks.length];
+	
 	private ButtonGroup grupo = new ButtonGroup();
+	
+	private AlunoModel selecionado; // precisa ser model para gravar as alteracoes
 
 	public static void main(String[] args) {
 		EdicaoAluno lfd = new EdicaoAluno();
 		lfd.setVisible(true);
 	}
-
+	
 	public EdicaoAluno() {
 		super("Edição de Aluno");
 		Container c = getContentPane();
 		// Usa o gerenciador FlowLayout(fluxo)
 		c.setLayout(new FlowLayout());
 		c.add(lbMatr);
-		c.add(jtTexto01);
+		c.add(jtMatr);
 		c.add(lbNome);
-		c.add(jtTexto02);
+		c.add(jtNome);
 		c.add(jbOk);
 		c.add(jbLim);
 		ItemSelecionado iselect = new ItemSelecionado();
@@ -57,6 +63,7 @@ public class EdicaoAluno extends JFrame {
 		setSize(200, 250);
 		
 		jbOk.addActionListener(new EnviarAcao());	
+		jbLim.addActionListener(new RemoverAcao());
 	}
 
 	public void atualiza(int i) {
@@ -66,6 +73,17 @@ public class EdicaoAluno extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Aluno getSelecionado() {
+		return selecionado;
+	}
+
+	public void setSelecionado(AlunoModel selecionado) {
+		this.selecionado = selecionado;
+		jtMatr.setText(selecionado.getMatricula().toString());
+		jtNome.setText(selecionado.getNome());
+		
 	}
 
 	private class ItemSelecionado implements ItemListener {
@@ -81,6 +99,29 @@ public class EdicaoAluno extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			if (selecionado == null) {
+				selecionado = new AlunoModel();
+				selecionado.setMatricula(Integer.parseInt(jtMatr.getText()));
+			}
+			selecionado.setNome(jtNome.getText());
+			selecionado.save();
+			System.out.println("Gravando selecionado");
+			
+//			Principal p = new Principal();
+//			
+//			p.createAndShowGUI();
+			
+		}
+		
+	}
+	
+	private class RemoverAcao implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			selecionado.remove();
+			System.out.println("Removido selecionado");
+			
 //			Principal p = new Principal();
 //			
 //			p.createAndShowGUI();

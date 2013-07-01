@@ -3,20 +3,25 @@ package cadastrodealunos;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+
+import padroesorm.activerecord.AlunoModel;
+import padroesorm.rowdatagateway.Aluno;
+import padroesorm.tabledatagateway.ManipuladorDeAlunos;
 
 public class TabelaAlunos extends JPanel 
                                 implements ActionListener { 
@@ -28,8 +33,8 @@ public class TabelaAlunos extends JPanel
     private JCheckBox rowCheck;
     private JCheckBox columnCheck;
     private JCheckBox cellCheck;
-    private ButtonGroup buttonGroup;
-    private JTextArea output;
+//    private ButtonGroup buttonGroup;
+//    private JTextArea output;
 
     public TabelaAlunos() {
         super();
@@ -118,7 +123,22 @@ public class TabelaAlunos extends JPanel
             if (event.getValueIsAdjusting()) {
                 return;
             }
+            AlunoModel am = null;
+            DefaultListSelectionModel src = (DefaultListSelectionModel)event.getSource();
+            ListSelectionListener[] escs = src.getListSelectionListeners();
+            for (ListSelectionListener lsl : escs) {
+				if (lsl instanceof JTable) {
+					JTable tab = (JTable) lsl;
+					TableModel mtm = tab.getModel();
+					int vlr = (Integer) mtm.getValueAt(tab.getSelectedRow(), 0);
+					am = new AlunoModel(vlr);
+					break;
+//					tab.get
+				}
+			}
+
             EdicaoAluno ed = new EdicaoAluno();
+            ed.setSelecionado(am);
             ed.setVisible(true);
 //            output.append("ROW SELECTION EVENT. ");
 //            outputSelection();
@@ -136,26 +156,45 @@ public class TabelaAlunos extends JPanel
 //    }
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"Matrícula",
+        /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private String[] columnNames = {"Matrícula",
                                         "Nome"};
-        private Object[][] data = {
-	    {"Kathy", "Smith",
-	     "Snowboarding", new Integer(5), new Boolean(false)},
-	    {"John", "Doe",
-	     "Rowing", new Integer(3), new Boolean(true)},
-	    {"Sue", "Black",
-	     "Knitting", new Integer(2), new Boolean(false)},
-	    {"Jane", "White",
-	     "Speed reading", new Integer(20), new Boolean(true)},
-	    {"Joe", "Brown",
-	     "Pool", new Integer(10), new Boolean(false)}
-        };
+        private Object[][] data = recuperarDados();
 
         public int getColumnCount() {
             return columnNames.length;
         }
 
-        public int getRowCount() {
+        private Object[][] recuperarDados() {
+        	ArrayList<Aluno> todos = new ManipuladorDeAlunos().listarTodos();
+        	
+			Object[][] dados = new Object[todos.size()][2];
+			
+        	for (int i = 0; i < todos.size(); i++) {
+        		Aluno aluno = (Aluno) todos.get(i);
+        		dados[i][0] = aluno.getMatricula();
+        		dados[i][1] = aluno.getNome();
+			}
+
+			// {
+//    	    {"Kathy", "Smith",
+//    		     "Snowboarding", new Integer(5), new Boolean(false)},
+//    		    {"John", "Doe",
+//    		     "Rowing", new Integer(3), new Boolean(true)},
+//    		    {"Sue", "Black",
+//    		     "Knitting", new Integer(2), new Boolean(false)},
+//    		    {"Jane", "White",
+//    		     "Speed reading", new Integer(20), new Boolean(true)},
+//    		    {"Joe", "Brown",
+//    		     "Pool", new Integer(10), new Boolean(false)}
+//    	        };
+			return dados;
+		}
+
+		public int getRowCount() {
             return data.length;
         }
 
@@ -173,9 +212,9 @@ public class TabelaAlunos extends JPanel
          * then the last column would contain text ("true"/"false"),
          * rather than a check box.
          */
-        public Class getColumnClass(int c) {
-            return getValueAt(0, c).getClass();
-        }
+//        public Class getColumnClass(int c) {
+//            return getValueAt(0, c).getClass();
+//        }
 
         /*
          * Don't need to implement this method unless your table's
