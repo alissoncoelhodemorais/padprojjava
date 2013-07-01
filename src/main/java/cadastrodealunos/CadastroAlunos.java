@@ -3,30 +3,18 @@ package cadastrodealunos;
 import java.awt.*;
 
 import javax.swing.*;
-/*
- * ver se dah para usar o set property listener na lista de alunos, ou talvez o item listener como foi feito na mudanca do LF
- * para cada acao, farei uma actLis que possua os campos que serao alterados
- */
+
 public class CadastroAlunos {
-//	public final static boolean RIGHT_TO_LEFT = false;
 
 	public static void addComponentsToPane(Container pane) {
-		// comentei pois n sei para q serve
-//		if (RIGHT_TO_LEFT) {
-//			pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-//		}
 
 		pane.setLayout(new GridLayout(0, 1));
 		
 		JPanel jpIncluir= new JPanel();
 		jpIncluir.setLayout(new GridLayout(0, 3));
 		
-		IncluirAlunoAcao iaa = new IncluirAlunoAcao();
-		iaa.setValor("ini");
-
-		JButton btIncluir = new JButton("Incluir");
-		btIncluir.addActionListener(iaa);
-		iaa.setValor("depois");
+		JButton btIncluir = new JButton("Incluir Aluno");
+		btIncluir.addActionListener(new IncluirAlunoAcao());
 
 		jpIncluir.add(btIncluir);
 		jpIncluir.add(new JLabel(""));
@@ -34,11 +22,8 @@ public class CadastroAlunos {
 		
 		pane.add(jpIncluir);
 
-
-		
-        //Create and set up the content pane.
         TabelaAlunos newContentPane = new TabelaAlunos();
-        newContentPane.setOpaque(true); //content panes must be opaque
+        newContentPane.setOpaque(true); // devem ser opacos
         pane.add(newContentPane);
 
 	}
