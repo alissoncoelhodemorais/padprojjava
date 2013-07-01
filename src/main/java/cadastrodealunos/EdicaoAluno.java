@@ -3,6 +3,8 @@ package cadastrodealunos;
 //javax.swing.*;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -15,31 +17,31 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-public class LFDemo extends JFrame {
+public class EdicaoAluno extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-	private JLabel lbLabel01 = new JLabel("Nome :");
-	private JLabel lbLabel02 = new JLabel("E-mail :");
+	private JLabel lbMatr = new JLabel("Matrícula");
+	private JLabel lbNome = new JLabel("Nome");
 	private JTextField jtTexto01 = new JTextField(10);
 	private JTextField jtTexto02 = new JTextField(10);
-	private JButton jbOk = new JButton("Enviar");
-	private JButton jbLim = new JButton("Limpar");
+	private JButton jbOk = new JButton("Gravar");
+	private JButton jbLim = new JButton("Remover");
 	private JRadioButton[] escolha = new JRadioButton[looks.length];
 	private ButtonGroup grupo = new ButtonGroup();
 
 	public static void main(String[] args) {
-		LFDemo lfd = new LFDemo();
+		EdicaoAluno lfd = new EdicaoAluno();
 		lfd.setVisible(true);
 	}
 
-	public LFDemo() {
-		super("Selecione um LF");
+	public EdicaoAluno() {
+		super("Edição de Aluno");
 		Container c = getContentPane();
 		// Usa o gerenciador FlowLayout(fluxo)
 		c.setLayout(new FlowLayout());
-		c.add(lbLabel01);
+		c.add(lbMatr);
 		c.add(jtTexto01);
-		c.add(lbLabel02);
+		c.add(lbNome);
 		c.add(jtTexto02);
 		c.add(jbOk);
 		c.add(jbLim);
@@ -50,9 +52,11 @@ public class LFDemo extends JFrame {
 			grupo.add(escolha[i]);
 			c.add(escolha[i]);
 		}
-		escolha[2].setSelected(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		escolha[3].setSelected(true);
+//		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(200, 250);
+		
+		jbOk.addActionListener(new EnviarAcao());	
 	}
 
 	public void atualiza(int i) {
@@ -71,5 +75,17 @@ public class LFDemo extends JFrame {
 					atualiza(i);
 			}
 		}
+	}
+	
+	private class EnviarAcao implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+//			Principal p = new Principal();
+//			
+//			p.createAndShowGUI();
+			
+		}
+		
 	}
 }

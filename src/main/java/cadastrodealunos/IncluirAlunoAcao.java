@@ -9,6 +9,8 @@ public class IncluirAlunoAcao implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		EdicaoAluno lfd = new EdicaoAluno();
+		lfd.setVisible(true);
 		System.out.println("cliclou em incAluAca");
 	}
 

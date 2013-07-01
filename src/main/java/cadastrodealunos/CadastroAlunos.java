@@ -2,8 +2,11 @@ package cadastrodealunos;
 
 import java.awt.*;
 import javax.swing.*;
-
-public class Principal {
+/*
+ * ver se dah para usar o set property listener na lista de alunos, ou talvez o item listener como foi feito na mudanca do LF
+ * para cada acao, farei uma actLis que possua os campos que serao alterados
+ */
+public class CadastroAlunos {
 	public final static boolean RIGHT_TO_LEFT = false;
 
 	public static void addComponentsToPane(Container pane) {
@@ -17,10 +20,10 @@ public class Principal {
 		iaa.setValor("ini");
 
 		pane.add(new JButton("Botoao 1"));
-		JButton jButton = new JButton("Botoao 2");
-		jButton.addActionListener(iaa);
+		JButton btIncluir = new JButton("Incluir");
+		btIncluir.addActionListener(iaa);
 		iaa.setValor("depois");
-		pane.add(jButton);
+		pane.add(btIncluir);
 		pane.add(new JButton("Botoao 3"));
 		pane.add(new JButton("Botao Nome-Longo 4"));
 		pane.add(new JButton("5"));
@@ -30,12 +33,12 @@ public class Principal {
 	 * Cria um GUI e o exibe. Para thread safety, este metodo podera invocar para uma thread de disparo de evento(event-dispatching
 	 * thread).
 	 */
-	private static void createAndShowGUI() {
+	public static void createAndShowGUI() {
 		// Faz com que tenha uma decoracao de janela.
 		JFrame.setDefaultLookAndFeelDecorated(true);
 
 		// Cria e organiza a janela.
-		JFrame frame = new JFrame("DemoGridLayout");
+		JFrame frame = new JFrame("Cadastro de Alunos");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Organiza o conteudo no painel.
