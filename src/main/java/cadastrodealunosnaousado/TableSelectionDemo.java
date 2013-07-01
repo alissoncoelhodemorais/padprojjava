@@ -1,4 +1,4 @@
-package cadastrodealunos;
+package cadastrodealunosnaousado;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

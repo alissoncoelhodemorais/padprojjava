@@ -1,18 +1,12 @@
-package cadastrodealunos;
+package cadastrodealunosnaousado;
 
-import java.awt.Container;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class CadastroAlunos {
 
-	public void addComponentsToPane(Container pane) {
+	public static void addComponentsToPane(Container pane) {
 
 		pane.setLayout(new GridLayout(0, 1));
 		
@@ -34,7 +28,7 @@ public class CadastroAlunos {
 
 	}
 
-	public void createAndShowGUI() {
+	public static void createAndShowGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 
 		JFrame frame = new JFrame("Cadastro de Alunos");
@@ -49,18 +43,8 @@ public class CadastroAlunos {
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new CadastroAlunos().createAndShowGUI();
+				createAndShowGUI();
 			}
 		});
-	}
-	
-	private class IncluirAlunoAcao implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			EdicaoAluno lfd = new EdicaoAluno();
-			lfd.setVisible(true);
-
-		}
 	}
 }
