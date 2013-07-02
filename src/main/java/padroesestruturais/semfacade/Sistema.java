@@ -10,7 +10,7 @@ public class Sistema {
 	}
 
 	private void configurar() {
-		System.out.println(config.getAdaptador());
+		System.out.println("Preparado para usar o seguinte adaptador: " + config.getAdaptador());
 		
 	}
 

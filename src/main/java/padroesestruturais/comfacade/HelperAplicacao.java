@@ -9,7 +9,7 @@ public class HelperAplicacao {
 	
 	public Properties carregarProperties() throws IOException {
 		File file = new File(".");
-		FileInputStream fis = new FileInputStream(file.getAbsolutePath().replace(".", "src/main/java/") + Aplicacao.class.getName().replace('.', '/').replace("Aplicacao", "") + "dbconfig.properties");
+		FileInputStream fis = new FileInputStream(file.getAbsolutePath().replace(".", "src/main/java/") + HelperAplicacao.class.getName().replace('.', '/').replace("HelperAplicacao", "") + "dbconfig.properties");
 		Properties properties = new Properties();
 		properties.load(fis);
 		return properties;
